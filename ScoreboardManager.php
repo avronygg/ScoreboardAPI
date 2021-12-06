@@ -14,9 +14,9 @@ class ScoreboardManager
      * @param Player $player
      * @param string $title
      */
-    public static function add(Player $player): void
+    public static function add(Player $player, string $title): void
     {
-        self::$scoreboard[$player->getName()] = new Scoreboard($player);
+        self::$scoreboard[$player->getName()] = new Scoreboard($player, $title);
     }
 
     /**
