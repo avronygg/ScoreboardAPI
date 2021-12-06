@@ -12,6 +12,7 @@ class ScoreboardManager
 
     /**
      * @param Player $player
+     * @param string $title
      */
     public function add(Player $player): void
     {
