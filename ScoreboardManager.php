@@ -8,15 +8,15 @@ class ScoreboardManager
 {
 
     /** @var Scoreboard[] */
-    public array $scoreboard = [];
+    public static array $scoreboard = [];
 
     /**
      * @param Player $player
      * @param string $title
      */
-    public function add(Player $player): void
+    public static function add(Player $player): void
     {
-        $this->scoreboard[$player->getName()] = new Scoreboard($player);
+        self::$scoreboard[$player->getName()] = new Scoreboard($player);
     }
 
     /**
@@ -24,24 +24,31 @@ class ScoreboardManager
      */
     public function remove(Player $player): void
     {
-        unset($this->scoreboard[$player->getName()]);
+        if (!self::exist($player))
+            return;
+        
+        $scoreboard = self::get($player);
+        $scoreboard->removeScoreboard();
+        
+        unset(self::$scoreboard[$player->getName()]);
     }
 
     /**
      * @param Player $player
      * @return bool
      */
-    public function exist(Player $player): bool
+    public static function exist(Player $player): bool
     {
-        return isset($this->scoreboard[$player->getName()]);
+        return isset(self::$scoreboard[$player->getName()]);
     }
 
     /**
      * @param Player $player
-     * @return Scoreboard
+     * @return Scoreboard|null
      */
-    public function get(Player $player): Scoreboard
+    public static function get(Player $player): ?Scoreboard
     {
-        return $this->scoreboard[$player->getName()];
+        if (!self::exist($player)) return null;
+        return self::$scoreboard[$player->getName()];
     }
 }
