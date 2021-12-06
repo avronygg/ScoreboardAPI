@@ -2,11 +2,8 @@
 
 declare(strict_types=1);
 
-namespace greek\modules\scoreboard;
+namespace pluginName\api\scoreboard;
 
-use greek\Loader;
-use greek\messages\MessageContainer;
-use greek\player\Player;
 use pocketmine\network\mcpe\protocol\RemoveObjectivePacket;
 use pocketmine\network\mcpe\protocol\SetDisplayObjectivePacket;
 use pocketmine\network\mcpe\protocol\SetScorePacket;
@@ -29,13 +26,13 @@ class Scoreboard
     private array $lines = [];
 
     /**
-     * Scoreboard constructor.
      * @param Player $player
+     * @param string $title
      */
-    public function __construct(Player $player)
+    public function __construct(Player $player, string $title)
     {
         $this->player = $player;
-        $this->title = (new MessageContainer('scoreborad-title'))->__toString();
+        $this->title = $title;
         $this->initScoreboard();
     }
 
