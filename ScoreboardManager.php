@@ -1,11 +1,10 @@
 <?php
 
-namespace greek\modules\scoreboard;
+namespace pluginName\api\scoreboard;
 
-use addon\Manager;
-use greek\player\Player;
+use pocketmine\player\Player;
 
-class ScoreboardManager extends Manager
+class ScoreboardManager
 {
 
     /** @var Scoreboard[] */
